@@ -13,7 +13,7 @@ class CallController extends BaseController
 
     public function index()
     {
-        $calls = Call::all()
-        return $this->sendResponse(CallResource::collection($calls), 'Calls retrieved successfully.')
+        $calls = Call::all();
+        return $this->sendResponse(CallResource::collection($calls), 'Calls retrieved successfully.');
     }
 }
