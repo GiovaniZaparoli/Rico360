@@ -23,6 +23,6 @@ class Call extends JsonResource
             'caller_user' => (new UserResource($this->whenLoaded('caller_user'))),
             'receiver_user' => (new UserResource($this->whenLoaded('receiver_user'))),
             'created_at' => $this->created_at->format('d/m/Y'),
-        ]
+        ];
     }
 }

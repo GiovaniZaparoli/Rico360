@@ -4,9 +4,11 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
-use App\Models\Call;
 use Validator;
 use App\Http\Resources\Call as CallResource;
+
+use App\Models\Call;
+
 
 class CallController extends BaseController
 {
