@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\API\BaseController as BaseController;
 use Validator;
-use App\Http\Resources\Call as CallResource;
-
 use App\Models\Call;
+use Twilio\Rest\Client;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\Call as CallResource;
+use App\Http\Controllers\API\BaseController as BaseController;
+
 
 
 class CallController extends BaseController
@@ -15,7 +17,17 @@ class CallController extends BaseController
 
     public function index()
     {
+        print($user);
         $calls = Call::all();
         return $this->sendResponse(CallResource::collection($calls), 'Calls retrieved successfully.');
+    }
+
+    public function create(Request $request)
+    {
+        $call_number = $request->call_number;
+        $to_number = $request->to_number;
+
+        $client = new Client($_ENV["TWILLO_SID"], $_ENV["TWILLO_TOKEN"]);
+
     }
 }

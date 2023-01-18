@@ -23,6 +23,7 @@ Route::post('login', [RegisterController::class, 'login'] );
 
 Route::middleware('auth:api')->group(function () {
     Route::get('calls', [CallController::class, 'index']);
+    Route::get('/user/me', [UserController::class, 'me']);
 });
 
 Route::get('/users', [UserController::class, 'index']);
