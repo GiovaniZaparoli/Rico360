@@ -38,7 +38,7 @@ class TwilioController extends BaseController
     {
         $response = new VoiceResponse();
         $dial = $response->dial('', ['callerId' => $_ENV['TWILIO_NUMBER']]);
-        $dial->number('+5514996681935');
+        $dial->number($request->To);
 
         echo $response;
     }
