@@ -6,17 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\RegisterController;
 use App\Http\Controllers\API\CallController;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+use App\Http\Controllers\API\TwilioController;
 
 Route::post('register', [RegisterController::class, 'register'] );
 Route::post('login', [RegisterController::class, 'login'] );
@@ -24,6 +14,8 @@ Route::post('login', [RegisterController::class, 'login'] );
 Route::middleware('auth:api')->group(function () {
     Route::get('calls', [CallController::class, 'index']);
     Route::get('/user/me', [UserController::class, 'me']);
+    Route::get('/twilio/token', [TwilioController::class, 'token']);
 });
 
+Route::post('/twilio/voice', [TwilioController::class, 'voice']);
 Route::get('/users', [UserController::class, 'index']);
