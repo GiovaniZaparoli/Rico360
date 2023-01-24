@@ -36,11 +36,10 @@ class TwilioController extends BaseController
 
     public function voice(Request $request)
     {
-        echo $request;
-        // $response = new VoiceResponse();
-        // $dial = $response->dial('', ['callerId' => $_ENV['TWILIO_NUMBER']]);
-        // $dial->number($request->to);
+        $response = new VoiceResponse();
+        $dial = $response->dial('', ['callerId' => $_ENV['TWILIO_NUMBER']]);
+        $dial->number('+5514996681935');
 
-        // echo $response;
+        echo $response;
     }
 }
