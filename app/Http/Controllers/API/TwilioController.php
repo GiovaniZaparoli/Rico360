@@ -38,13 +38,7 @@ class TwilioController extends BaseController
     {
         $response = new VoiceResponse();
         $dial = $response->dial(null, ['callerId' => $_ENV['TWILIO_NUMBER']]);
-        $phoneNumberToDial = $request->input('phoneNumber');
-
-        if (isset($phoneNumberToDial)) {
-            $dial->number($phoneNumberToDial);
-        } else {
-            $dial->client('support_agent');
-        }
+        $dial->number('+5514996681935');
 
         return $response;
     }
