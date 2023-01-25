@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('call_sid');
             $table->string('status');
-            $table->string('duration');
+            $table->string('duration')->nullable();
             $table->bigInteger('receiver_user_id')->unsigned()->index();
             $table->foreign('receiver_user_id')->references('id')->on('users')->onDelete('cascade');
 
