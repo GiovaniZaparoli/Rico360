@@ -53,6 +53,6 @@ class TwilioController extends BaseController
     public function callback(Request $request)
     {
         file_put_contents("php://stderr", $request.PHP_EOL);
-        return ['status' => 'ok']
+        return ['status' => 'ok'];
     }
 }
