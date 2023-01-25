@@ -18,4 +18,5 @@ Route::middleware('auth:api')->group(function () {
 });
 
 Route::post('/twilio/voice', [TwilioController::class, 'voice']);
+Route::post('/twilio/callback', [TwilioController::class, 'callback']);
 Route::get('/users', [UserController::class, 'index']);
