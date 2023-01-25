@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Validator;
 use App\Models\Call;
+use App\Models\User;
 use Twilio\Jwt\AccessToken;
 use Illuminate\Http\Request;
 use Twilio\TwiML\VoiceResponse;
@@ -36,7 +37,14 @@ class TwilioController extends BaseController
 
     public function voice(Request $request)
     {
-        file_put_contents("php://stderr", $request.PHP_EOL);
+        $call_params = [
+            'receiver_user_id' => User::where('phone', '=', $request->To)->first()->id,
+            'call_sid' => $request->CallSid,
+            'status' => $request->CallStatus,
+        ];
+
+        Call::create($call_params);
+
         $response = new VoiceResponse();
         $dial = $response->dial(null, ['callerId' => $_ENV['TWILIO_NUMBER']]);
         $phoneNumberToDial = $request->To;

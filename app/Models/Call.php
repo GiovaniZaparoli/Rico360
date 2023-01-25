@@ -13,11 +13,6 @@ class Call extends Model
         'duration',
     ];
 
-    public function caller()
-    {
-      return $this->belongsTo(User::class, 'caller_user_id');
-    }
-
     public function receiver()
     {
       return $this->belongsTo(User::class, 'receiver_user_id');

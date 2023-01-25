@@ -18,9 +18,7 @@ return new class extends Migration
             $table->string('call_sid');
             $table->string('status');
             $table->string('duration');
-            $table->bigInteger('caller_user_id')->unsigned()->index();
             $table->bigInteger('receiver_user_id')->unsigned()->index();
-            $table->foreign('caller_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('receiver_user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
