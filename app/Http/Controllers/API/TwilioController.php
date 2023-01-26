@@ -22,7 +22,7 @@ class TwilioController extends BaseController
 
     public function token()
     {
-        $response = $this->twilioService.getToken();
+        $response = $this->twilioService->getToken();
         return $response;
     }
 
