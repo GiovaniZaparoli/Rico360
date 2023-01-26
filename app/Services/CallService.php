@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Http\Request;
 use App\Repositories\Contracts\CallRepositoryInterface;
 
 class CallService
@@ -23,7 +24,7 @@ class CallService
         return $this->callRepository->getCallBySid($sid);
     }
 
-    public function createCall(array $params)
+    public function createCall(Request $params)
     {
         $call_params = [
             'receiver_user_id' => User::where('phone', '=', $params->To)->first()->id,
