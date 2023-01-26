@@ -4,7 +4,6 @@ namespace App\Http\Controllers\API;
 
 use Validator;
 use App\Models\Call;
-use App\Models\User;
 use Twilio\Jwt\AccessToken;
 use Illuminate\Http\Request;
 use Twilio\TwiML\VoiceResponse;

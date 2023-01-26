@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\CallRepositoryInterface;
 
