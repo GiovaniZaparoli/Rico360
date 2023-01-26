@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\API;
 
 use Validator;
-use App\Models\Call;
 use Twilio\Jwt\AccessToken;
 use Illuminate\Http\Request;
+use App\Services\CallService;
 use Twilio\TwiML\VoiceResponse;
 use Twilio\Jwt\Grants\VoiceGrant;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\API\BaseController as BaseController;
-use App\Services\CallService;
 
 
 class TwilioController extends BaseController
@@ -43,7 +42,7 @@ class TwilioController extends BaseController
 
     public function voice(Request $request)
     {
-        $this->callService->createCall($request);
+        $this->callService->createCall($request->all());
 
         $response = new VoiceResponse();
         $dial = $response->dial(null, ['callerId' => $_ENV['TWILIO_NUMBER']]);

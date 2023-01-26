@@ -2,17 +2,18 @@
 
 namespace App\Services;
 
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Repositories\Contracts\CallRepositoryInterface;
+use App\Repositories\Contracts\UserRepositoryInterface;
 
 class CallService
 {
     protected $callRepository;
+    protected $userRepository;
 
-    public function __construct(CallRepositoryInterface $callRepository)
+    public function __construct(CallRepositoryInterface $callRepository, UserRepositoryInterface $userRepository)
     {
         $this->callRepository = $callRepository;
+        $this->userRepository = $userRepository;
     }
 
     public function getAllCalls()
@@ -25,12 +26,10 @@ class CallService
         return $this->callRepository->getCallBySid($sid);
     }
 
-    public function createCall(Request $params)
+    public function createCall(array $params)
     {
-        file_put_contents("php://stderr", $params.PHP_EOL);
-
         $call_params = [
-            'receiver_user_id' => User::where('phone', '=', $params->To)->first()->id,
+            'receiver_user_id' => $this->userRepository->getUserByPhone($param->To)->id,
             'call_sid' => $params->CallSid,
             'status' => $params->CallStatus,
         ];

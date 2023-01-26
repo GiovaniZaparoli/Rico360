@@ -4,9 +4,11 @@ namespace App\Providers;
 
 use App\Repositories\Contracts\{
     CallRepositoryInterface,
+    UserRepositoryInterface,
 };
 use App\Repositories\{
-    CallRepository
+    CallRepository,
+    UserRepository,
 };
 
 use Illuminate\Support\ServiceProvider;
@@ -18,6 +20,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             CallRepositoryInterface::class,
             CallRepository::class,
+        );
+
+        $this->app->bind(
+            UserRepositoryInterface::class,
+            UserRepository::class,
         );
     }
 

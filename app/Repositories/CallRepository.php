@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Repositories\Contracts\CallRepositoryInterface;
 use App\Models\Call;
+use App\Repositories\Contracts\CallRepositoryInterface;
 
 class CallRepository implements CallRepositoryInterface
 {
