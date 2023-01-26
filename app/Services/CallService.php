@@ -48,7 +48,7 @@ class CallService
         $call_params = [
             'status' => $params->CallStatus,
             'duration' => $params->Duration,
-        ]
+        ];
 
         $this->callRepository->updateCall($call, $call_params);
         return response()->json(['message' => 'Call updated'], 200);
