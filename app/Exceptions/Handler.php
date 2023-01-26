@@ -53,6 +53,8 @@ class Handler extends ExceptionHandler
     public function render($request, $exception)
     {
         if ($request->is('api/*') || $request->wantsJson())
+        file_put_contents("php://stderr", $exception.PHP_EOL);
+
         {
             $json = [
                 'success' => false,
