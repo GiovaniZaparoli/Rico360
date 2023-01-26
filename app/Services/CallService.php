@@ -29,9 +29,9 @@ class CallService
     public function createCall(array $params)
     {
         $call_params = [
-            'receiver_user_id' => $this->userRepository->getUserByPhone($params->To)->id,
-            'call_sid' => $params->CallSid,
-            'status' => $params->CallStatus,
+            'receiver_user_id' => $this->userRepository->getUserByPhone($params['To'])->id,
+            'call_sid' => $params['CallSid'],
+            'status' => $params['CallStatus'],
         ];
 
         return $this->callRepository->createCall($call_params);
@@ -46,8 +46,8 @@ class CallService
         }
 
         $call_params = [
-            'status' => $params->CallStatus,
-            'duration' => $params->Duration,
+            'status' => $params['CallStatus'],
+            'duration' => $params['Duration'],
         ];
 
         $this->callRepository->updateCall($call, $call_params);
