@@ -27,6 +27,8 @@ class CallService
 
     public function createCall(Request $params)
     {
+        file_put_contents("php://stderr", $params.PHP_EOL);
+
         $call_params = [
             'receiver_user_id' => User::where('phone', '=', $params->To)->first()->id,
             'call_sid' => $params->CallSid,
