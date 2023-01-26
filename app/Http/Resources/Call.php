@@ -20,7 +20,7 @@ class Call extends JsonResource
             'call_sid' => $this->call_sid,
             'status' => $this->status,
             'duration' => $this->duration,
-            'receiver_user' => new UserResource($this->receiver_user),
+            'receiver_user' => new UserResource($this->receiver),
             'created_at' => $this->created_at->format('d/m/Y'),
         ];
     }
