@@ -37,6 +37,6 @@ class TwilioRepository implements TwilioRepositoryInterface
             $dial->client('support_agent');
         }
 
-        return $response
+        return $response;
     }
 }
