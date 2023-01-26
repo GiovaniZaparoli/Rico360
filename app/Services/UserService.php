@@ -29,6 +29,6 @@ class UserService
         $user = $this->userRepository->createUser($params);
         $response['token'] = $user->createToken('JobTest')->accessToken;
         $response['name'] = $user->name;
-        return $success
+        return $success;
     }
 }
