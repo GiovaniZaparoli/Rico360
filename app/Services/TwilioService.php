@@ -21,6 +21,6 @@ class TwilioService
 
     public function makeVoice(string $toNumber)
     {
-        return $this->twilioRepository->makeCall($toNumber);
+        return $this->twilioRepository->makeVoice($toNumber);
     }
 }
