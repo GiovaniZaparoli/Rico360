@@ -29,7 +29,7 @@ class CallService
     public function createCall(array $params)
     {
         $call_params = [
-            'receiver_user_id' => $this->userRepository->getUserByPhone($param->To)->id,
+            'receiver_user_id' => $this->userRepository->getUserByPhone($params->To)->id,
             'call_sid' => $params->CallSid,
             'status' => $params->CallStatus,
         ];
@@ -45,7 +45,12 @@ class CallService
             return response()->json(['message' => 'Call not found'], 404);
         }
 
-        $this->callRepository->updateCall($call, $params);
+        $call_params = [
+            'status' => $params->CallStatus,
+            'duration' => $params->Duration,
+        ]
+
+        $this->callRepository->updateCall($call, $call_params);
         return response()->json(['message' => 'Call updated'], 200);
     }
 }
