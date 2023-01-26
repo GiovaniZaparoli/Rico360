@@ -11,10 +11,17 @@ use Twilio\TwiML\VoiceResponse;
 use Twilio\Jwt\Grants\VoiceGrant;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\API\BaseController as BaseController;
+use App\Services\CallService;
 
 
 class TwilioController extends BaseController
 {
+    protected $callService;
+
+    public function __construct(CallService $callService)
+    {
+        $this->callService = $callService;
+    }
 
     public function token()
     {
@@ -37,13 +44,7 @@ class TwilioController extends BaseController
 
     public function voice(Request $request)
     {
-        $call_params = [
-            'receiver_user_id' => User::where('phone', '=', $request->To)->first()->id,
-            'call_sid' => $request->CallSid,
-            'status' => $request->CallStatus,
-        ];
-
-        Call::create($call_params);
+        $this->callService->createCall($request);
 
         $response = new VoiceResponse();
         $dial = $response->dial(null, ['callerId' => $_ENV['TWILIO_NUMBER']]);
