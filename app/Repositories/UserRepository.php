@@ -32,7 +32,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function forgotPassword(string $email)
     {
-        return Password::sendResetLink($email);
+        return Password::sendResetLink(['email' => $email]);
     }
 
     public function updatePassword(array $params)
