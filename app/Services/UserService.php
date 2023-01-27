@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Password;
 use App\Repositories\Contracts\UserRepositoryInterface;
 
 class UserService
@@ -30,5 +31,21 @@ class UserService
         $response['token'] = $user->createToken('JobTest')->accessToken;
         $response['name'] = $user->name;
         return $response;
+    }
+
+    public function forgotPassword(string $email)
+    {
+        $this->forgotPassword($email);
+    }
+
+    public function updatePassword(array $params)
+    {
+        $reset_status = $this->updatePassword($params)
+
+        if ($reset_status == Password::INVALID_TOKEN) {
+            return response()->json(['message' => 'Invalid token provided'], 400);
+        }
+
+        return response()->json(['message' => 'Password has been successfully changed'], 200);
     }
 }

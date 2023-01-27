@@ -36,4 +36,15 @@ class RegisterController extends BaseController
             return $this->sendError('Unauthorized.', ['error' => 'Unauthorized']);
         }
     }
+
+    public function forgotPassword (Request $request)
+    {
+        $this->userService->forgotPassword($request->email);
+        return response()->json(['message' => 'Reset password link sent on your email id.']);
+    }
+
+    public function resetPassword (Request $request)
+    {
+        return $this->userService->resetPassword($request->all());
+    }
 }

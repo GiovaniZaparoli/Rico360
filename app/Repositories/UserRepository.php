@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Password;
 use App\Repositories\Contracts\UserRepositoryInterface;
 
 class UserRepository implements UserRepositoryInterface
@@ -27,5 +28,21 @@ class UserRepository implements UserRepositoryInterface
     public function createUser(array $params)
     {
         return $this->entity->create($params);
+    }
+
+    public function forgotPassword(string $email)
+    {
+        return Password::sendResetLink($email);
+    }
+
+    public function updatePassword(array $params)
+    {
+        $reset_password_status = Password::reset($params, function ($user, $password) {
+            $user->password = $password;
+            $user->c_password = $password;
+            $user->save();
+        });
+
+        return $reset_password_status
     }
 }

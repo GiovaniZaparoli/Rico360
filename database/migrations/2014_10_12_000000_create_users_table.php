@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('c_password');
             $table->rememberToken();
+            $table->string('reset_password_token')->nullable();
             $table->string('phone')->unique();
             $table->timestamps();
         });

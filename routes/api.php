@@ -10,8 +10,11 @@ use App\Http\Controllers\API\TwilioController;
 
 Route::post('register', [RegisterController::class, 'register'] );
 Route::post('login', [RegisterController::class, 'login'] );
+Route::post('forgotPassword', [RegisterController::class, 'forgotPassword'])
+Route::post('resetPassword', [RegisterController::class, 'resetPassword'])
 
 Route::middleware('auth:api')->group(function () {
+    Route::get('/users', [UserController::class, 'index']);
     Route::get('calls', [CallController::class, 'index']);
     Route::get('/user/me', [UserController::class, 'me']);
     Route::get('/twilio/token', [TwilioController::class, 'token']);
@@ -19,4 +22,3 @@ Route::middleware('auth:api')->group(function () {
 
 Route::post('/twilio/voice', [TwilioController::class, 'voice']);
 Route::post('/twilio/callback', [TwilioController::class, 'callback']);
-Route::get('/users', [UserController::class, 'index']);
