@@ -43,8 +43,6 @@ class UserRepository implements UserRepositoryInterface
             $user->save();
         });
 
-        file_put_contents("php://stderr", $reset_password_status.PHP_EOL);
-
         return $reset_password_status;
     }
 }
