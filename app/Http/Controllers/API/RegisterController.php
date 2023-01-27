@@ -45,6 +45,6 @@ class RegisterController extends BaseController
 
     public function resetPassword (Request $request)
     {
-        return $this->userService->resetPassword($request->all());
+        return $this->userService->updatePassword($request->all());
     }
 }
