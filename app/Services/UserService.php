@@ -35,12 +35,12 @@ class UserService
 
     public function forgotPassword(string $email)
     {
-        $this->forgotPassword($email);
+        $this->userRepository->forgotPassword($email);
     }
 
     public function updatePassword(array $params)
     {
-        $reset_status = $this->updatePassword($params);
+        $reset_status = $this->userRepository->updatePassword($params);
 
         if ($reset_status == Password::INVALID_TOKEN) {
             return response()->json(['message' => 'Invalid token provided'], 400);
