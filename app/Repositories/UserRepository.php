@@ -43,6 +43,6 @@ class UserRepository implements UserRepositoryInterface
             $user->save();
         });
 
-        return $reset_password_status
+        return $reset_password_status;
     }
 }
