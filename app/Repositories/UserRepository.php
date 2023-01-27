@@ -38,8 +38,7 @@ class UserRepository implements UserRepositoryInterface
     public function updatePassword(array $params)
     {
         $reset_password_status = Password::reset($params, function ($user, $password) {
-            $user->password = $password;
-            $user->c_password = $password;
+            $user->password = bcrypt($password);
             $user->save();
         });
 
