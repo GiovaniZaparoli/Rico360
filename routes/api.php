@@ -11,7 +11,7 @@ use App\Http\Controllers\API\TwilioController;
 Route::post('register', [RegisterController::class, 'register'] );
 Route::post('login', [RegisterController::class, 'login'] );
 Route::post('forgotPassword', [RegisterController::class, 'forgotPassword']);
-Route::post('/password/reset', [RegisterController::class, 'resetPassword']);
+Route::post('/password/reset', [RegisterController::class, 'resetPassword'])->name('password.reset');
 
 Route::middleware('auth:api')->group(function () {
     Route::get('/users', [UserController::class, 'index']);
