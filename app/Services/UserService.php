@@ -27,6 +27,7 @@ class UserService
     public function createUser(array $params)
     {
         $params['password'] = bcrypt($params['password']);
+        $params['status'] = 'online';
         $user = $this->userRepository->createUser($params);
         $response['token'] = $user->createToken('JobTest')->accessToken;
         $response['name'] = $user->name;

@@ -16,9 +16,9 @@ class CallService
         $this->userRepository = $userRepository;
     }
 
-    public function getAllCalls()
+    public function getAllCalls(array $params)
     {
-        return $this->callRepository->getAllCalls();
+        return $this->callRepository->getAllCalls($params);
     }
 
     public function getCallBySid(string $sid)

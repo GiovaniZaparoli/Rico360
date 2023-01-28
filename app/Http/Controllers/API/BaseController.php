@@ -22,6 +22,22 @@ class BaseController extends Controller
         return response()->json($response, 200);
     }
 
+    public function sendResponsePaginated($result, $paginate, $message)
+    {
+        $response = [
+            'success' => true,
+            'data'    => $result,
+            'message' => $message,
+            'paginate' => [
+                'total' => $paginate->total(),
+                'per_page' => $paginate->perPage(),
+                'last_page' => $paginate->lastPage(),
+                'current_page' => $paginate->currentPage(),
+            ],
+        ];
+        return response()->json($response, 200);
+    }
+
     /**
     * return error response.
     *

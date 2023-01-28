@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 use App\Models\Call;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 use App\Repositories\Contracts\CallRepositoryInterface;
 
 class CallRepository implements CallRepositoryInterface
@@ -14,9 +16,16 @@ class CallRepository implements CallRepositoryInterface
         $this->entity = $call;
     }
 
-    public function getAllCalls()
+    public function getAllCalls(array $params)
     {
-        return $this->entity->paginate();
+        $response = QueryBuilder::For(Call::class)->allowedFilters([AllowedFilter::exact('id'),
+                                                                    AllowedFilter::exact('call_sid'),
+                                                                    AllowedFilter::exact('status')])
+                                                    ->defaultSort('-created_at')
+                                                    ->allowedSorts('created_at', '-created_at')
+                                                    ->paginate($params['per_page'])
+                                                    ->appends(request()->query());
+        return $response;
     }
 
     public function getCallBySid(string $sid)

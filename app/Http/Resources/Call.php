@@ -21,7 +21,7 @@ class Call extends JsonResource
             'status' => $this->status,
             'duration' => $this->duration,
             'receiver_user' => new UserResource($this->receiver),
-            'created_at' => $this->created_at->format('d/m/Y'),
+            'created_at' => $this->created_at->format('m/d/Y H:m'),
         ];
     }
 }
